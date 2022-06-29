@@ -15,6 +15,8 @@ final class PermissionsPolicyFeatureEnum
 	public const AMBIENT_LIGHT_SENSOR = 'ambient-light-sensor';
 	public const ATTRIBUTION_REPORTING = 'attribution-reporting';
 	public const AUTOPLAY = 'autoplay';
+	public const BLUETOOTH = 'bluetooth';
+	public const BROWSING_TOPICS = 'browsing-topics';
 	public const CAMERA = 'camera';
 	public const CH_DPR = 'ch-dpr';
 	public const CH_DEVICE_MEMORY = 'ch-device-memory';
@@ -22,15 +24,19 @@ final class PermissionsPolicyFeatureEnum
 	public const CH_ECT = 'ch-ect';
 	public const CH_PREFERS_COLOR_SCHEME = 'ch-prefers-color-scheme';
 	public const CH_RTT = 'ch-rtt';
+	public const CH_SAVE_DATA = 'ch-save-data';
 	public const CH_UA = 'ch-ua';
 	public const CH_UA_ARCH = 'ch-ua-arch';
 	public const CH_UA_BITNESS = 'ch-ua-bitness';
 	public const CH_UA_PLATFORM = 'ch-ua-platform';
 	public const CH_UA_MODEL = 'ch-ua-model';
 	public const CH_UA_MOBILE = 'ch-ua-mobile';
+	public const CH_UA_FULL = 'ch-ua-full';
 	public const CH_UA_FULL_VERSION = 'ch-ua-full-version';
+	public const CH_UA_FULL_VERSION_LIST = 'ch-ua-full-version-list';
 	public const CH_UA_PLATFORM_VERSION = 'ch-ua-platform-version';
 	public const CH_UA_REDUCED = 'ch-ua-reduced';
+	public const CH_UA_WOW64 = 'ch-ua-wow64';
 	public const CH_VIEWPORT_HEIGHT = 'ch-viewport-height';
 	public const CH_VIEWPORT_WIDTH = 'ch-viewport-width';
 	public const CH_WIDTH = 'ch-width';
@@ -52,6 +58,9 @@ final class PermissionsPolicyFeatureEnum
 	public const HID = 'hid';
 	public const IDLE_DETECTION = 'idle-detection';
 	public const INTEREST_COHORT = 'interest-cohort';
+	public const JOIN_AD_INTEREST_GROUP = 'join-ad-interest-group';
+	public const KEYBOARD_MAP = 'keyboard-map';
+	public const LOCAL_FONTS = 'local-fonts';
 	public const MAGNETOMETER = 'magnetometer';
 	public const MICROPHONE = 'microphone';
 	public const MIDI = 'midi';
@@ -59,6 +68,7 @@ final class PermissionsPolicyFeatureEnum
 	public const PAYMENT = 'payment';
 	public const PICTURE_IN_PICTURE = 'picture-in-picture';
 	public const PUBLICKEY_CREDENTIALS_GET = 'publickey-credentials-get';
+	public const RUN_AD_AUCTION = 'run-ad-auction';
 	public const SCREEN_WAKE_LOCK = 'screen-wake-lock';
 	public const SERIAL = 'serial';
 	public const SHARED_AUTOFILL = 'shared-autofill';

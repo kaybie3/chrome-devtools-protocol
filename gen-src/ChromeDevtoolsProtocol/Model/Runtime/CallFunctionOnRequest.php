@@ -88,7 +88,18 @@ final class CallFunctionOnRequest implements \JsonSerializable
 	 */
 	public $throwOnSideEffect;
 
+	/**
+	 * Whether the result should contain `webDriverValue`, serialized according to https://w3c.github.io/webdriver-bidi. This is mutually exclusive with `returnByValue`, but resulting `objectId` is still provided.
+	 *
+	 * @var bool|null
+	 */
+	public $generateWebDriverValue;
 
+
+	/**
+	 * @param object $data
+	 * @return static
+	 */
 	public static function fromJson($data)
 	{
 		$instance = new static();
@@ -127,6 +138,9 @@ final class CallFunctionOnRequest implements \JsonSerializable
 		}
 		if (isset($data->throwOnSideEffect)) {
 			$instance->throwOnSideEffect = (bool)$data->throwOnSideEffect;
+		}
+		if (isset($data->generateWebDriverValue)) {
+			$instance->generateWebDriverValue = (bool)$data->generateWebDriverValue;
 		}
 		return $instance;
 	}
@@ -170,6 +184,9 @@ final class CallFunctionOnRequest implements \JsonSerializable
 		}
 		if ($this->throwOnSideEffect !== null) {
 			$data->throwOnSideEffect = $this->throwOnSideEffect;
+		}
+		if ($this->generateWebDriverValue !== null) {
+			$data->generateWebDriverValue = $this->generateWebDriverValue;
 		}
 		return $data;
 	}

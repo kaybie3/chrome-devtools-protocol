@@ -11,7 +11,7 @@ namespace ChromeDevtoolsProtocol\Model\Audits;
  */
 final class InspectorIssueCodeEnum
 {
-	public const SAME_SITE_COOKIE_ISSUE = 'SameSiteCookieIssue';
+	public const COOKIE_ISSUE = 'CookieIssue';
 	public const MIXED_CONTENT_ISSUE = 'MixedContentIssue';
 	public const BLOCKED_BY_RESPONSE_ISSUE = 'BlockedByResponseIssue';
 	public const HEAVY_AD_ISSUE = 'HeavyAdIssue';
@@ -23,6 +23,8 @@ final class InspectorIssueCodeEnum
 	public const ATTRIBUTION_REPORTING_ISSUE = 'AttributionReportingIssue';
 	public const QUIRKS_MODE_ISSUE = 'QuirksModeIssue';
 	public const NAVIGATOR_USER_AGENT_ISSUE = 'NavigatorUserAgentIssue';
-	public const WASM_CROSS_ORIGIN_MODULE_SHARING_ISSUE = 'WasmCrossOriginModuleSharingIssue';
 	public const GENERIC_ISSUE = 'GenericIssue';
+	public const DEPRECATION_ISSUE = 'DeprecationIssue';
+	public const CLIENT_HINT_ISSUE = 'ClientHintIssue';
+	public const FEDERATED_AUTH_REQUEST_ISSUE = 'FederatedAuthRequestIssue';
 }

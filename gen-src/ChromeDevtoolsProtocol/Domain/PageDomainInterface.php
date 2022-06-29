@@ -58,6 +58,7 @@ use ChromeDevtoolsProtocol\Model\Page\NavigateRequest;
 use ChromeDevtoolsProtocol\Model\Page\NavigateResponse;
 use ChromeDevtoolsProtocol\Model\Page\NavigateToHistoryEntryRequest;
 use ChromeDevtoolsProtocol\Model\Page\NavigatedWithinDocumentEvent;
+use ChromeDevtoolsProtocol\Model\Page\PrerenderAttemptCompletedEvent;
 use ChromeDevtoolsProtocol\Model\Page\PrintToPDFRequest;
 use ChromeDevtoolsProtocol\Model\Page\PrintToPDFResponse;
 use ChromeDevtoolsProtocol\Model\Page\ProduceCompilationCacheRequest;
@@ -80,6 +81,7 @@ use ChromeDevtoolsProtocol\Model\Page\SetFontSizesRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetGeolocationOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetInterceptFileChooserDialogRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetLifecycleEventsEnabledRequest;
+use ChromeDevtoolsProtocol\Model\Page\SetSPCTransactionModeRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetTouchEmulationEnabledRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetWebLifecycleStateRequest;
 use ChromeDevtoolsProtocol\Model\Page\StartScreencastRequest;
@@ -656,6 +658,17 @@ interface PageDomainInterface
 	 * @return void
 	 */
 	public function setLifecycleEventsEnabled(ContextInterface $ctx, SetLifecycleEventsEnabledRequest $request): void;
+
+
+	/**
+	 * Sets the Secure Payment Confirmation transaction mode. https://w3c.github.io/secure-payment-confirmation/#sctn-automation-set-spc-transaction-mode
+	 *
+	 * @param ContextInterface $ctx
+	 * @param SetSPCTransactionModeRequest $request
+	 *
+	 * @return void
+	 */
+	public function setSPCTransactionMode(ContextInterface $ctx, SetSPCTransactionModeRequest $request): void;
 
 
 	/**
@@ -1271,6 +1284,30 @@ interface PageDomainInterface
 	 * @return NavigatedWithinDocumentEvent
 	 */
 	public function awaitNavigatedWithinDocument(ContextInterface $ctx): NavigatedWithinDocumentEvent;
+
+
+	/**
+	 * Fired when a prerender attempt is completed.
+	 *
+	 * Listener will be called whenever event Page.prerenderAttemptCompleted is fired.
+	 *
+	 * @param callable $listener
+	 *
+	 * @return SubscriptionInterface
+	 */
+	public function addPrerenderAttemptCompletedListener(callable $listener): SubscriptionInterface;
+
+
+	/**
+	 * Fired when a prerender attempt is completed.
+	 *
+	 * Method will block until first Page.prerenderAttemptCompleted event is fired.
+	 *
+	 * @param ContextInterface $ctx
+	 *
+	 * @return PrerenderAttemptCompletedEvent
+	 */
+	public function awaitPrerenderAttemptCompleted(ContextInterface $ctx): PrerenderAttemptCompletedEvent;
 
 
 	/**

@@ -6,6 +6,7 @@ use ChromeDevtoolsProtocol\ContextInterface;
 use ChromeDevtoolsProtocol\InternalClientInterface;
 use ChromeDevtoolsProtocol\Model\Emulation\CanEmulateResponse;
 use ChromeDevtoolsProtocol\Model\Emulation\SetAutoDarkModeOverrideRequest;
+use ChromeDevtoolsProtocol\Model\Emulation\SetAutomationOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetCPUThrottlingRateRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetDefaultBackgroundColorOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetDeviceMetricsOverrideRequest;
@@ -16,6 +17,7 @@ use ChromeDevtoolsProtocol\Model\Emulation\SetEmulatedMediaRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetEmulatedVisionDeficiencyRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetFocusEmulationEnabledRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetGeolocationOverrideRequest;
+use ChromeDevtoolsProtocol\Model\Emulation\SetHardwareConcurrencyOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetIdleOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetLocaleOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetNavigatorOverridesRequest;
@@ -85,6 +87,12 @@ class EmulationDomain implements EmulationDomainInterface
 	}
 
 
+	public function setAutomationOverride(ContextInterface $ctx, SetAutomationOverrideRequest $request): void
+	{
+		$this->internalClient->executeCommand($ctx, 'Emulation.setAutomationOverride', $request);
+	}
+
+
 	public function setCPUThrottlingRate(ContextInterface $ctx, SetCPUThrottlingRateRequest $request): void
 	{
 		$this->internalClient->executeCommand($ctx, 'Emulation.setCPUThrottlingRate', $request);
@@ -144,6 +152,14 @@ class EmulationDomain implements EmulationDomainInterface
 	public function setGeolocationOverride(ContextInterface $ctx, SetGeolocationOverrideRequest $request): void
 	{
 		$this->internalClient->executeCommand($ctx, 'Emulation.setGeolocationOverride', $request);
+	}
+
+
+	public function setHardwareConcurrencyOverride(
+		ContextInterface $ctx,
+		SetHardwareConcurrencyOverrideRequest $request
+	): void {
+		$this->internalClient->executeCommand($ctx, 'Emulation.setHardwareConcurrencyOverride', $request);
 	}
 
 

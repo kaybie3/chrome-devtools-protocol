@@ -9,7 +9,7 @@ namespace ChromeDevtoolsProtocol\Model\Audits;
  *
  * @author Jakub Kulhan <jakub.kulhan@gmail.com>
  */
-final class SameSiteCookieIssueDetails implements \JsonSerializable
+final class CookieIssueDetails implements \JsonSerializable
 {
 	/**
 	 * If AffectedCookie is not set then rawCookieLine contains the raw Set-Cookie header string. This hints at a problem where the cookie line is syntactically or semantically malformed in a way that no valid cookie could be created.
@@ -44,6 +44,10 @@ final class SameSiteCookieIssueDetails implements \JsonSerializable
 	public $request;
 
 
+	/**
+	 * @param object $data
+	 * @return static
+	 */
 	public static function fromJson($data)
 	{
 		$instance = new static();

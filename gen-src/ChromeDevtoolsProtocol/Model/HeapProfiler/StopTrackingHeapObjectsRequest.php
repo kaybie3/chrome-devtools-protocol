@@ -18,7 +18,11 @@ final class StopTrackingHeapObjectsRequest implements \JsonSerializable
 	 */
 	public $reportProgress;
 
-	/** @var bool|null */
+	/**
+	 * Deprecated in favor of `exposeInternals`.
+	 *
+	 * @var bool|null
+	 */
 	public $treatGlobalObjectsAsRoots;
 
 	/**
@@ -28,7 +32,18 @@ final class StopTrackingHeapObjectsRequest implements \JsonSerializable
 	 */
 	public $captureNumericValue;
 
+	/**
+	 * If true, exposes internals of the snapshot.
+	 *
+	 * @var bool|null
+	 */
+	public $exposeInternals;
 
+
+	/**
+	 * @param object $data
+	 * @return static
+	 */
 	public static function fromJson($data)
 	{
 		$instance = new static();
@@ -40,6 +55,9 @@ final class StopTrackingHeapObjectsRequest implements \JsonSerializable
 		}
 		if (isset($data->captureNumericValue)) {
 			$instance->captureNumericValue = (bool)$data->captureNumericValue;
+		}
+		if (isset($data->exposeInternals)) {
+			$instance->exposeInternals = (bool)$data->exposeInternals;
 		}
 		return $instance;
 	}
@@ -56,6 +74,9 @@ final class StopTrackingHeapObjectsRequest implements \JsonSerializable
 		}
 		if ($this->captureNumericValue !== null) {
 			$data->captureNumericValue = $this->captureNumericValue;
+		}
+		if ($this->exposeInternals !== null) {
+			$data->exposeInternals = $this->exposeInternals;
 		}
 		return $data;
 	}

@@ -11,7 +11,7 @@ namespace ChromeDevtoolsProtocol\Model\Page;
  */
 final class BackForwardCacheNotRestoredReasonEnum
 {
-	public const NOT_MAIN_FRAME = 'NotMainFrame';
+	public const NOT_PRIMARY_MAIN_FRAME = 'NotPrimaryMainFrame';
 	public const BACK_FORWARD_CACHE_DISABLED = 'BackForwardCacheDisabled';
 	public const RELATED_ACTIVE_CONTENTS_EXIST = 'RelatedActiveContentsExist';
 	public const HTTP_STATUS_NOT_O_K = 'HTTPStatusNotOK';
@@ -27,7 +27,6 @@ final class BackForwardCacheNotRestoredReasonEnum
 	public const JAVA_SCRIPT_EXECUTION = 'JavaScriptExecution';
 	public const RENDERER_PROCESS_KILLED = 'RendererProcessKilled';
 	public const RENDERER_PROCESS_CRASHED = 'RendererProcessCrashed';
-	public const GRANTED_MEDIA_STREAM_ACCESS = 'GrantedMediaStreamAccess';
 	public const SCHEDULER_TRACKED_FEATURE_USED = 'SchedulerTrackedFeatureUsed';
 	public const CONFLICTING_BROWSING_INSTANCE = 'ConflictingBrowsingInstance';
 	public const CACHE_FLUSHED = 'CacheFlushed';
@@ -54,7 +53,6 @@ final class BackForwardCacheNotRestoredReasonEnum
 	public const FOREGROUND_CACHE_LIMIT = 'ForegroundCacheLimit';
 	public const BROWSING_INSTANCE_NOT_SWAPPED = 'BrowsingInstanceNotSwapped';
 	public const BACK_FORWARD_CACHE_DISABLED_FOR_DELEGATE = 'BackForwardCacheDisabledForDelegate';
-	public const OPT_IN_UNLOAD_HEADER_NOT_PRESENT = 'OptInUnloadHeaderNotPresent';
 	public const UNLOAD_HANDLER_EXISTS_IN_MAIN_FRAME = 'UnloadHandlerExistsInMainFrame';
 	public const UNLOAD_HANDLER_EXISTS_IN_SUB_FRAME = 'UnloadHandlerExistsInSubFrame';
 	public const SERVICE_WORKER_UNREGISTRATION = 'ServiceWorkerUnregistration';
@@ -64,6 +62,8 @@ final class BackForwardCacheNotRestoredReasonEnum
 	public const NO_RESPONSE_HEAD = 'NoResponseHead';
 	public const UNKNOWN = 'Unknown';
 	public const ACTIVATION_NAVIGATIONS_DISALLOWED_FOR_BUG1234857 = 'ActivationNavigationsDisallowedForBug1234857';
+	public const ERROR_DOCUMENT = 'ErrorDocument';
+	public const FENCED_FRAMES_EMBEDDER = 'FencedFramesEmbedder';
 	public const WEB_SOCKET = 'WebSocket';
 	public const WEB_TRANSPORT = 'WebTransport';
 	public const WEB_R_T_C = 'WebRTC';
@@ -116,9 +116,8 @@ final class BackForwardCacheNotRestoredReasonEnum
 	public const CONTENT_MEDIA_DEVICES_DISPATCHER_HOST = 'ContentMediaDevicesDispatcherHost';
 	public const CONTENT_WEB_BLUETOOTH = 'ContentWebBluetooth';
 	public const CONTENT_WEB_U_S_B = 'ContentWebUSB';
-	public const CONTENT_MEDIA_SESSION = 'ContentMediaSession';
 	public const CONTENT_MEDIA_SESSION_SERVICE = 'ContentMediaSessionService';
-	public const CONTENT_MEDIA_PLAY = 'ContentMediaPlay';
+	public const CONTENT_SCREEN_READER = 'ContentScreenReader';
 	public const EMBEDDER_POPUP_BLOCKER_TAB_HELPER = 'EmbedderPopupBlockerTabHelper';
 	public const EMBEDDER_SAFE_BROWSING_TRIGGERED_POPUP_BLOCKER = 'EmbedderSafeBrowsingTriggeredPopupBlocker';
 	public const EMBEDDER_SAFE_BROWSING_THREAT_DETAILS = 'EmbedderSafeBrowsingThreatDetails';

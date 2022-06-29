@@ -11,8 +11,8 @@ namespace ChromeDevtoolsProtocol\Model\Audits;
  */
 final class InspectorIssueDetails implements \JsonSerializable
 {
-	/** @var SameSiteCookieIssueDetails|null */
-	public $sameSiteCookieIssueDetails;
+	/** @var CookieIssueDetails|null */
+	public $cookieIssueDetails;
 
 	/** @var MixedContentIssueDetails|null */
 	public $mixedContentIssueDetails;
@@ -47,18 +47,28 @@ final class InspectorIssueDetails implements \JsonSerializable
 	/** @var NavigatorUserAgentIssueDetails|null */
 	public $navigatorUserAgentIssueDetails;
 
-	/** @var WasmCrossOriginModuleSharingIssueDetails|null */
-	public $wasmCrossOriginModuleSharingIssue;
-
 	/** @var GenericIssueDetails|null */
 	public $genericIssueDetails;
 
+	/** @var DeprecationIssueDetails|null */
+	public $deprecationIssueDetails;
 
+	/** @var ClientHintIssueDetails|null */
+	public $clientHintIssueDetails;
+
+	/** @var FederatedAuthRequestIssueDetails|null */
+	public $federatedAuthRequestIssueDetails;
+
+
+	/**
+	 * @param object $data
+	 * @return static
+	 */
 	public static function fromJson($data)
 	{
 		$instance = new static();
-		if (isset($data->sameSiteCookieIssueDetails)) {
-			$instance->sameSiteCookieIssueDetails = SameSiteCookieIssueDetails::fromJson($data->sameSiteCookieIssueDetails);
+		if (isset($data->cookieIssueDetails)) {
+			$instance->cookieIssueDetails = CookieIssueDetails::fromJson($data->cookieIssueDetails);
 		}
 		if (isset($data->mixedContentIssueDetails)) {
 			$instance->mixedContentIssueDetails = MixedContentIssueDetails::fromJson($data->mixedContentIssueDetails);
@@ -93,11 +103,17 @@ final class InspectorIssueDetails implements \JsonSerializable
 		if (isset($data->navigatorUserAgentIssueDetails)) {
 			$instance->navigatorUserAgentIssueDetails = NavigatorUserAgentIssueDetails::fromJson($data->navigatorUserAgentIssueDetails);
 		}
-		if (isset($data->wasmCrossOriginModuleSharingIssue)) {
-			$instance->wasmCrossOriginModuleSharingIssue = WasmCrossOriginModuleSharingIssueDetails::fromJson($data->wasmCrossOriginModuleSharingIssue);
-		}
 		if (isset($data->genericIssueDetails)) {
 			$instance->genericIssueDetails = GenericIssueDetails::fromJson($data->genericIssueDetails);
+		}
+		if (isset($data->deprecationIssueDetails)) {
+			$instance->deprecationIssueDetails = DeprecationIssueDetails::fromJson($data->deprecationIssueDetails);
+		}
+		if (isset($data->clientHintIssueDetails)) {
+			$instance->clientHintIssueDetails = ClientHintIssueDetails::fromJson($data->clientHintIssueDetails);
+		}
+		if (isset($data->federatedAuthRequestIssueDetails)) {
+			$instance->federatedAuthRequestIssueDetails = FederatedAuthRequestIssueDetails::fromJson($data->federatedAuthRequestIssueDetails);
 		}
 		return $instance;
 	}
@@ -106,8 +122,8 @@ final class InspectorIssueDetails implements \JsonSerializable
 	public function jsonSerialize()
 	{
 		$data = new \stdClass();
-		if ($this->sameSiteCookieIssueDetails !== null) {
-			$data->sameSiteCookieIssueDetails = $this->sameSiteCookieIssueDetails->jsonSerialize();
+		if ($this->cookieIssueDetails !== null) {
+			$data->cookieIssueDetails = $this->cookieIssueDetails->jsonSerialize();
 		}
 		if ($this->mixedContentIssueDetails !== null) {
 			$data->mixedContentIssueDetails = $this->mixedContentIssueDetails->jsonSerialize();
@@ -142,11 +158,17 @@ final class InspectorIssueDetails implements \JsonSerializable
 		if ($this->navigatorUserAgentIssueDetails !== null) {
 			$data->navigatorUserAgentIssueDetails = $this->navigatorUserAgentIssueDetails->jsonSerialize();
 		}
-		if ($this->wasmCrossOriginModuleSharingIssue !== null) {
-			$data->wasmCrossOriginModuleSharingIssue = $this->wasmCrossOriginModuleSharingIssue->jsonSerialize();
-		}
 		if ($this->genericIssueDetails !== null) {
 			$data->genericIssueDetails = $this->genericIssueDetails->jsonSerialize();
+		}
+		if ($this->deprecationIssueDetails !== null) {
+			$data->deprecationIssueDetails = $this->deprecationIssueDetails->jsonSerialize();
+		}
+		if ($this->clientHintIssueDetails !== null) {
+			$data->clientHintIssueDetails = $this->clientHintIssueDetails->jsonSerialize();
+		}
+		if ($this->federatedAuthRequestIssueDetails !== null) {
+			$data->federatedAuthRequestIssueDetails = $this->federatedAuthRequestIssueDetails->jsonSerialize();
 		}
 		return $data;
 	}

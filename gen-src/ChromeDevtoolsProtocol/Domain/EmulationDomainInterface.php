@@ -5,6 +5,7 @@ namespace ChromeDevtoolsProtocol\Domain;
 use ChromeDevtoolsProtocol\ContextInterface;
 use ChromeDevtoolsProtocol\Model\Emulation\CanEmulateResponse;
 use ChromeDevtoolsProtocol\Model\Emulation\SetAutoDarkModeOverrideRequest;
+use ChromeDevtoolsProtocol\Model\Emulation\SetAutomationOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetCPUThrottlingRateRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetDefaultBackgroundColorOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetDeviceMetricsOverrideRequest;
@@ -15,6 +16,7 @@ use ChromeDevtoolsProtocol\Model\Emulation\SetEmulatedMediaRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetEmulatedVisionDeficiencyRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetFocusEmulationEnabledRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetGeolocationOverrideRequest;
+use ChromeDevtoolsProtocol\Model\Emulation\SetHardwareConcurrencyOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetIdleOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetLocaleOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Emulation\SetNavigatorOverridesRequest;
@@ -98,6 +100,17 @@ interface EmulationDomainInterface
 	 * @return void
 	 */
 	public function setAutoDarkModeOverride(ContextInterface $ctx, SetAutoDarkModeOverrideRequest $request): void;
+
+
+	/**
+	 * Allows overriding the automation flag.
+	 *
+	 * @param ContextInterface $ctx
+	 * @param SetAutomationOverrideRequest $request
+	 *
+	 * @return void
+	 */
+	public function setAutomationOverride(ContextInterface $ctx, SetAutomationOverrideRequest $request): void;
 
 
 	/**
@@ -211,6 +224,20 @@ interface EmulationDomainInterface
 	 * @return void
 	 */
 	public function setGeolocationOverride(ContextInterface $ctx, SetGeolocationOverrideRequest $request): void;
+
+
+	/**
+	 * Call Emulation.setHardwareConcurrencyOverride command.
+	 *
+	 * @param ContextInterface $ctx
+	 * @param SetHardwareConcurrencyOverrideRequest $request
+	 *
+	 * @return void
+	 */
+	public function setHardwareConcurrencyOverride(
+		ContextInterface $ctx,
+		SetHardwareConcurrencyOverrideRequest $request
+	): void;
 
 
 	/**

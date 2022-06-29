@@ -18,6 +18,8 @@ use ChromeDevtoolsProtocol\Model\CSS\GetComputedStyleForNodeRequest;
 use ChromeDevtoolsProtocol\Model\CSS\GetComputedStyleForNodeResponse;
 use ChromeDevtoolsProtocol\Model\CSS\GetInlineStylesForNodeRequest;
 use ChromeDevtoolsProtocol\Model\CSS\GetInlineStylesForNodeResponse;
+use ChromeDevtoolsProtocol\Model\CSS\GetLayersForNodeRequest;
+use ChromeDevtoolsProtocol\Model\CSS\GetLayersForNodeResponse;
 use ChromeDevtoolsProtocol\Model\CSS\GetMatchedStylesForNodeRequest;
 use ChromeDevtoolsProtocol\Model\CSS\GetMatchedStylesForNodeResponse;
 use ChromeDevtoolsProtocol\Model\CSS\GetMediaQueriesResponse;
@@ -40,6 +42,8 @@ use ChromeDevtoolsProtocol\Model\CSS\SetStyleSheetTextRequest;
 use ChromeDevtoolsProtocol\Model\CSS\SetStyleSheetTextResponse;
 use ChromeDevtoolsProtocol\Model\CSS\SetStyleTextsRequest;
 use ChromeDevtoolsProtocol\Model\CSS\SetStyleTextsResponse;
+use ChromeDevtoolsProtocol\Model\CSS\SetSupportsTextRequest;
+use ChromeDevtoolsProtocol\Model\CSS\SetSupportsTextResponse;
 use ChromeDevtoolsProtocol\Model\CSS\StopRuleUsageTrackingResponse;
 use ChromeDevtoolsProtocol\Model\CSS\StyleSheetAddedEvent;
 use ChromeDevtoolsProtocol\Model\CSS\StyleSheetChangedEvent;
@@ -126,6 +130,13 @@ class CSSDomain implements CSSDomainInterface
 	): GetInlineStylesForNodeResponse {
 		$response = $this->internalClient->executeCommand($ctx, 'CSS.getInlineStylesForNode', $request);
 		return GetInlineStylesForNodeResponse::fromJson($response);
+	}
+
+
+	public function getLayersForNode(ContextInterface $ctx, GetLayersForNodeRequest $request): GetLayersForNodeResponse
+	{
+		$response = $this->internalClient->executeCommand($ctx, 'CSS.getLayersForNode', $request);
+		return GetLayersForNodeResponse::fromJson($response);
 	}
 
 
@@ -217,6 +228,13 @@ class CSSDomain implements CSSDomainInterface
 	{
 		$response = $this->internalClient->executeCommand($ctx, 'CSS.setStyleTexts', $request);
 		return SetStyleTextsResponse::fromJson($response);
+	}
+
+
+	public function setSupportsText(ContextInterface $ctx, SetSupportsTextRequest $request): SetSupportsTextResponse
+	{
+		$response = $this->internalClient->executeCommand($ctx, 'CSS.setSupportsText', $request);
+		return SetSupportsTextResponse::fromJson($response);
 	}
 
 

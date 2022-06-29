@@ -14,6 +14,9 @@ final class UserAgentMetadata implements \JsonSerializable
 	/** @var UserAgentBrandVersion[]|null */
 	public $brands;
 
+	/** @var UserAgentBrandVersion[]|null */
+	public $fullVersionList;
+
 	/** @var string|null */
 	public $fullVersion;
 
@@ -32,7 +35,17 @@ final class UserAgentMetadata implements \JsonSerializable
 	/** @var bool */
 	public $mobile;
 
+	/** @var string|null */
+	public $bitness;
 
+	/** @var bool|null */
+	public $wow64;
+
+
+	/**
+	 * @param object $data
+	 * @return static
+	 */
 	public static function fromJson($data)
 	{
 		$instance = new static();
@@ -40,6 +53,12 @@ final class UserAgentMetadata implements \JsonSerializable
 			$instance->brands = [];
 			foreach ($data->brands as $item) {
 				$instance->brands[] = UserAgentBrandVersion::fromJson($item);
+			}
+		}
+		if (isset($data->fullVersionList)) {
+			$instance->fullVersionList = [];
+			foreach ($data->fullVersionList as $item) {
+				$instance->fullVersionList[] = UserAgentBrandVersion::fromJson($item);
 			}
 		}
 		if (isset($data->fullVersion)) {
@@ -60,6 +79,12 @@ final class UserAgentMetadata implements \JsonSerializable
 		if (isset($data->mobile)) {
 			$instance->mobile = (bool)$data->mobile;
 		}
+		if (isset($data->bitness)) {
+			$instance->bitness = (string)$data->bitness;
+		}
+		if (isset($data->wow64)) {
+			$instance->wow64 = (bool)$data->wow64;
+		}
 		return $instance;
 	}
 
@@ -71,6 +96,12 @@ final class UserAgentMetadata implements \JsonSerializable
 			$data->brands = [];
 			foreach ($this->brands as $item) {
 				$data->brands[] = $item->jsonSerialize();
+			}
+		}
+		if ($this->fullVersionList !== null) {
+			$data->fullVersionList = [];
+			foreach ($this->fullVersionList as $item) {
+				$data->fullVersionList[] = $item->jsonSerialize();
 			}
 		}
 		if ($this->fullVersion !== null) {
@@ -90,6 +121,12 @@ final class UserAgentMetadata implements \JsonSerializable
 		}
 		if ($this->mobile !== null) {
 			$data->mobile = $this->mobile;
+		}
+		if ($this->bitness !== null) {
+			$data->bitness = $this->bitness;
+		}
+		if ($this->wow64 !== null) {
+			$data->wow64 = $this->wow64;
 		}
 		return $data;
 	}

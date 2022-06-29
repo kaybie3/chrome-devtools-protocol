@@ -116,7 +116,18 @@ final class EvaluateRequest implements \JsonSerializable
 	 */
 	public $uniqueContextId;
 
+	/**
+	 * Whether the result should be serialized according to https://w3c.github.io/webdriver-bidi.
+	 *
+	 * @var bool|null
+	 */
+	public $generateWebDriverValue;
 
+
+	/**
+	 * @param object $data
+	 * @return static
+	 */
 	public static function fromJson($data)
 	{
 		$instance = new static();
@@ -164,6 +175,9 @@ final class EvaluateRequest implements \JsonSerializable
 		}
 		if (isset($data->uniqueContextId)) {
 			$instance->uniqueContextId = (string)$data->uniqueContextId;
+		}
+		if (isset($data->generateWebDriverValue)) {
+			$instance->generateWebDriverValue = (bool)$data->generateWebDriverValue;
 		}
 		return $instance;
 	}
@@ -216,6 +230,9 @@ final class EvaluateRequest implements \JsonSerializable
 		}
 		if ($this->uniqueContextId !== null) {
 			$data->uniqueContextId = $this->uniqueContextId;
+		}
+		if ($this->generateWebDriverValue !== null) {
+			$data->generateWebDriverValue = $this->generateWebDriverValue;
 		}
 		return $data;
 	}

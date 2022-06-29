@@ -210,7 +210,14 @@ final class Node implements \JsonSerializable
 	/** @var string */
 	public $compatibilityMode;
 
+	/** @var BackendNode|null */
+	public $assignedSlot;
 
+
+	/**
+	 * @param object $data
+	 * @return static
+	 */
 	public static function fromJson($data)
 	{
 		$instance = new static();
@@ -315,6 +322,9 @@ final class Node implements \JsonSerializable
 		}
 		if (isset($data->compatibilityMode)) {
 			$instance->compatibilityMode = (string)$data->compatibilityMode;
+		}
+		if (isset($data->assignedSlot)) {
+			$instance->assignedSlot = BackendNode::fromJson($data->assignedSlot);
 		}
 		return $instance;
 	}
@@ -424,6 +434,9 @@ final class Node implements \JsonSerializable
 		}
 		if ($this->compatibilityMode !== null) {
 			$data->compatibilityMode = $this->compatibilityMode;
+		}
+		if ($this->assignedSlot !== null) {
+			$data->assignedSlot = $this->assignedSlot->jsonSerialize();
 		}
 		return $data;
 	}
