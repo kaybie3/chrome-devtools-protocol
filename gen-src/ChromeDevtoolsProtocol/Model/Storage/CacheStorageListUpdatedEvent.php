@@ -18,6 +18,13 @@ final class CacheStorageListUpdatedEvent implements \JsonSerializable
 	 */
 	public $origin;
 
+	/**
+	 * Storage key to update.
+	 *
+	 * @var string
+	 */
+	public $storageKey;
+
 
 	/**
 	 * @param object $data
@@ -29,6 +36,9 @@ final class CacheStorageListUpdatedEvent implements \JsonSerializable
 		if (isset($data->origin)) {
 			$instance->origin = (string)$data->origin;
 		}
+		if (isset($data->storageKey)) {
+			$instance->storageKey = (string)$data->storageKey;
+		}
 		return $instance;
 	}
 
@@ -38,6 +48,9 @@ final class CacheStorageListUpdatedEvent implements \JsonSerializable
 		$data = new \stdClass();
 		if ($this->origin !== null) {
 			$data->origin = $this->origin;
+		}
+		if ($this->storageKey !== null) {
+			$data->storageKey = $this->storageKey;
 		}
 		return $data;
 	}

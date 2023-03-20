@@ -32,6 +32,8 @@ use ChromeDevtoolsProtocol\Model\Page\FrameScheduledNavigationEvent;
 use ChromeDevtoolsProtocol\Model\Page\FrameStartedLoadingEvent;
 use ChromeDevtoolsProtocol\Model\Page\FrameStoppedLoadingEvent;
 use ChromeDevtoolsProtocol\Model\Page\GenerateTestReportRequest;
+use ChromeDevtoolsProtocol\Model\Page\GetAdScriptIdRequest;
+use ChromeDevtoolsProtocol\Model\Page\GetAdScriptIdResponse;
 use ChromeDevtoolsProtocol\Model\Page\GetAppIdResponse;
 use ChromeDevtoolsProtocol\Model\Page\GetAppManifestResponse;
 use ChromeDevtoolsProtocol\Model\Page\GetCookiesResponse;
@@ -58,7 +60,6 @@ use ChromeDevtoolsProtocol\Model\Page\NavigateRequest;
 use ChromeDevtoolsProtocol\Model\Page\NavigateResponse;
 use ChromeDevtoolsProtocol\Model\Page\NavigateToHistoryEntryRequest;
 use ChromeDevtoolsProtocol\Model\Page\NavigatedWithinDocumentEvent;
-use ChromeDevtoolsProtocol\Model\Page\PrerenderAttemptCompletedEvent;
 use ChromeDevtoolsProtocol\Model\Page\PrintToPDFRequest;
 use ChromeDevtoolsProtocol\Model\Page\PrintToPDFResponse;
 use ChromeDevtoolsProtocol\Model\Page\ProduceCompilationCacheRequest;
@@ -81,6 +82,7 @@ use ChromeDevtoolsProtocol\Model\Page\SetFontSizesRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetGeolocationOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetInterceptFileChooserDialogRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetLifecycleEventsEnabledRequest;
+use ChromeDevtoolsProtocol\Model\Page\SetRPHRegistrationModeRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetSPCTransactionModeRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetTouchEmulationEnabledRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetWebLifecycleStateRequest;
@@ -285,6 +287,17 @@ interface PageDomainInterface
 
 
 	/**
+	 * Call Page.getAdScriptId command.
+	 *
+	 * @param ContextInterface $ctx
+	 * @param GetAdScriptIdRequest $request
+	 *
+	 * @return GetAdScriptIdResponse
+	 */
+	public function getAdScriptId(ContextInterface $ctx, GetAdScriptIdRequest $request): GetAdScriptIdResponse;
+
+
+	/**
 	 * Returns the unique (PWA) app id. Only returns values if the feature flag 'WebAppEnableManifestId' is enabled
 	 *
 	 * @param ContextInterface $ctx
@@ -305,7 +318,7 @@ interface PageDomainInterface
 
 
 	/**
-	 * Returns all browser cookies. Depending on the backend support, will return detailed cookie information in the `cookies` field.
+	 * Returns all browser cookies for the page and all of its subframes. Depending on the backend support, will return detailed cookie information in the `cookies` field.
 	 *
 	 * @param ContextInterface $ctx
 	 *
@@ -345,7 +358,7 @@ interface PageDomainInterface
 
 
 	/**
-	 * Call Page.getManifestIcons command.
+	 * Deprecated because it's not guaranteed that the returned icon is in fact the one used for PWA installation.
 	 *
 	 * @param ContextInterface $ctx
 	 *
@@ -658,6 +671,17 @@ interface PageDomainInterface
 	 * @return void
 	 */
 	public function setLifecycleEventsEnabled(ContextInterface $ctx, SetLifecycleEventsEnabledRequest $request): void;
+
+
+	/**
+	 * Extensions for Custom Handlers API: https://html.spec.whatwg.org/multipage/system-state.html#rph-automation
+	 *
+	 * @param ContextInterface $ctx
+	 * @param SetRPHRegistrationModeRequest $request
+	 *
+	 * @return void
+	 */
+	public function setRPHRegistrationMode(ContextInterface $ctx, SetRPHRegistrationModeRequest $request): void;
 
 
 	/**
@@ -1284,30 +1308,6 @@ interface PageDomainInterface
 	 * @return NavigatedWithinDocumentEvent
 	 */
 	public function awaitNavigatedWithinDocument(ContextInterface $ctx): NavigatedWithinDocumentEvent;
-
-
-	/**
-	 * Fired when a prerender attempt is completed.
-	 *
-	 * Listener will be called whenever event Page.prerenderAttemptCompleted is fired.
-	 *
-	 * @param callable $listener
-	 *
-	 * @return SubscriptionInterface
-	 */
-	public function addPrerenderAttemptCompletedListener(callable $listener): SubscriptionInterface;
-
-
-	/**
-	 * Fired when a prerender attempt is completed.
-	 *
-	 * Method will block until first Page.prerenderAttemptCompleted event is fired.
-	 *
-	 * @param ContextInterface $ctx
-	 *
-	 * @return PrerenderAttemptCompletedEvent
-	 */
-	public function awaitPrerenderAttemptCompleted(ContextInterface $ctx): PrerenderAttemptCompletedEvent;
 
 
 	/**

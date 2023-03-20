@@ -1,22 +1,18 @@
 <?php
 
-namespace ChromeDevtoolsProtocol\Model\Profiler;
+namespace ChromeDevtoolsProtocol\Model\Preload;
 
 /**
- * Describes a type collected during runtime.
+ * Named type Preload.RuleSetRemovedEvent.
  *
  * @generated This file has been auto-generated, do not edit.
  *
  * @author Jakub Kulhan <jakub.kulhan@gmail.com>
  */
-final class TypeObject implements \JsonSerializable
+final class RuleSetRemovedEvent implements \JsonSerializable
 {
-	/**
-	 * Name of a type collected with type profiling.
-	 *
-	 * @var string
-	 */
-	public $name;
+	/** @var string */
+	public $id;
 
 
 	/**
@@ -26,8 +22,8 @@ final class TypeObject implements \JsonSerializable
 	public static function fromJson($data)
 	{
 		$instance = new static();
-		if (isset($data->name)) {
-			$instance->name = (string)$data->name;
+		if (isset($data->id)) {
+			$instance->id = (string)$data->id;
 		}
 		return $instance;
 	}
@@ -36,8 +32,8 @@ final class TypeObject implements \JsonSerializable
 	public function jsonSerialize()
 	{
 		$data = new \stdClass();
-		if ($this->name !== null) {
-			$data->name = $this->name;
+		if ($this->id !== null) {
+			$data->id = $this->id;
 		}
 		return $data;
 	}

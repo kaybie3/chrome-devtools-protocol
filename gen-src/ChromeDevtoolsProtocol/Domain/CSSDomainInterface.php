@@ -37,6 +37,8 @@ use ChromeDevtoolsProtocol\Model\CSS\SetMediaTextRequest;
 use ChromeDevtoolsProtocol\Model\CSS\SetMediaTextResponse;
 use ChromeDevtoolsProtocol\Model\CSS\SetRuleSelectorRequest;
 use ChromeDevtoolsProtocol\Model\CSS\SetRuleSelectorResponse;
+use ChromeDevtoolsProtocol\Model\CSS\SetScopeTextRequest;
+use ChromeDevtoolsProtocol\Model\CSS\SetScopeTextResponse;
 use ChromeDevtoolsProtocol\Model\CSS\SetStyleSheetTextRequest;
 use ChromeDevtoolsProtocol\Model\CSS\SetStyleSheetTextResponse;
 use ChromeDevtoolsProtocol\Model\CSS\SetStyleTextsRequest;
@@ -302,6 +304,17 @@ interface CSSDomainInterface
 
 
 	/**
+	 * Modifies the expression of a scope at-rule.
+	 *
+	 * @param ContextInterface $ctx
+	 * @param SetScopeTextRequest $request
+	 *
+	 * @return SetScopeTextResponse
+	 */
+	public function setScopeText(ContextInterface $ctx, SetScopeTextRequest $request): SetScopeTextResponse;
+
+
+	/**
 	 * Sets the new stylesheet text.
 	 *
 	 * @param ContextInterface $ctx
@@ -345,7 +358,7 @@ interface CSSDomainInterface
 
 
 	/**
-	 * Stop tracking rule usage and return the list of rules that were used since last call to `takeCoverageDelta` (or since start of coverage instrumentation)
+	 * Stop tracking rule usage and return the list of rules that were used since last call to `takeCoverageDelta` (or since start of coverage instrumentation).
 	 *
 	 * @param ContextInterface $ctx
 	 *
@@ -365,7 +378,7 @@ interface CSSDomainInterface
 
 
 	/**
-	 * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation)
+	 * Obtain list of rules that became used since last call to this method (or since start of coverage instrumentation).
 	 *
 	 * @param ContextInterface $ctx
 	 *
@@ -386,7 +399,7 @@ interface CSSDomainInterface
 
 
 	/**
-	 * Fires whenever a web font is updated. A non-empty font parameter indicates a successfully loaded web font
+	 * Fires whenever a web font is updated. A non-empty font parameter indicates a successfully loaded web font.
 	 *
 	 * Listener will be called whenever event CSS.fontsUpdated is fired.
 	 *
@@ -398,7 +411,7 @@ interface CSSDomainInterface
 
 
 	/**
-	 * Fires whenever a web font is updated. A non-empty font parameter indicates a successfully loaded web font
+	 * Fires whenever a web font is updated. A non-empty font parameter indicates a successfully loaded web font.
 	 *
 	 * Method will block until first CSS.fontsUpdated event is fired.
 	 *

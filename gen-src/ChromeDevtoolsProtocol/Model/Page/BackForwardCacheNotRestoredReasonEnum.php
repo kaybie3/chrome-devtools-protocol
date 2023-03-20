@@ -76,7 +76,6 @@ final class BackForwardCacheNotRestoredReasonEnum
 	public const DEDICATED_WORKER_OR_WORKLET = 'DedicatedWorkerOrWorklet';
 	public const OUTSTANDING_NETWORK_REQUEST_OTHERS = 'OutstandingNetworkRequestOthers';
 	public const OUTSTANDING_INDEXED_D_B_TRANSACTION = 'OutstandingIndexedDBTransaction';
-	public const REQUESTED_NOTIFICATIONS_PERMISSION = 'RequestedNotificationsPermission';
 	public const REQUESTED_M_I_D_I_PERMISSION = 'RequestedMIDIPermission';
 	public const REQUESTED_AUDIO_CAPTURE_PERMISSION = 'RequestedAudioCapturePermission';
 	public const REQUESTED_VIDEO_CAPTURE_PERMISSION = 'RequestedVideoCapturePermission';
@@ -107,7 +106,10 @@ final class BackForwardCacheNotRestoredReasonEnum
 	public const OUTSTANDING_NETWORK_REQUEST_DIRECT_SOCKET = 'OutstandingNetworkRequestDirectSocket';
 	public const INJECTED_JAVASCRIPT = 'InjectedJavascript';
 	public const INJECTED_STYLE_SHEET = 'InjectedStyleSheet';
+	public const KEEPALIVE_REQUEST = 'KeepaliveRequest';
+	public const INDEXED_D_B_EVENT = 'IndexedDBEvent';
 	public const DUMMY = 'Dummy';
+	public const AUTHORIZATION_HEADER = 'AuthorizationHeader';
 	public const CONTENT_SECURITY_HANDLER = 'ContentSecurityHandler';
 	public const CONTENT_WEB_AUTHENTICATION_A_P_I = 'ContentWebAuthenticationAPI';
 	public const CONTENT_FILE_CHOOSER = 'ContentFileChooser';

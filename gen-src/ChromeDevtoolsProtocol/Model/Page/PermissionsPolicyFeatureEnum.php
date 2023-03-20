@@ -23,6 +23,7 @@ final class PermissionsPolicyFeatureEnum
 	public const CH_DOWNLINK = 'ch-downlink';
 	public const CH_ECT = 'ch-ect';
 	public const CH_PREFERS_COLOR_SCHEME = 'ch-prefers-color-scheme';
+	public const CH_PREFERS_REDUCED_MOTION = 'ch-prefers-reduced-motion';
 	public const CH_RTT = 'ch-rtt';
 	public const CH_SAVE_DATA = 'ch-save-data';
 	public const CH_UA = 'ch-ua';
@@ -42,6 +43,7 @@ final class PermissionsPolicyFeatureEnum
 	public const CH_WIDTH = 'ch-width';
 	public const CLIPBOARD_READ = 'clipboard-read';
 	public const CLIPBOARD_WRITE = 'clipboard-write';
+	public const COMPUTE_PRESSURE = 'compute-pressure';
 	public const CROSS_ORIGIN_ISOLATED = 'cross-origin-isolated';
 	public const DIRECT_SOCKETS = 'direct-sockets';
 	public const DISPLAY_CAPTURE = 'display-capture';
@@ -56,6 +58,7 @@ final class PermissionsPolicyFeatureEnum
 	public const GEOLOCATION = 'geolocation';
 	public const GYROSCOPE = 'gyroscope';
 	public const HID = 'hid';
+	public const IDENTITY_CREDENTIALS_GET = 'identity-credentials-get';
 	public const IDLE_DETECTION = 'idle-detection';
 	public const INTEREST_COHORT = 'interest-cohort';
 	public const JOIN_AD_INTEREST_GROUP = 'join-ad-interest-group';
@@ -67,17 +70,23 @@ final class PermissionsPolicyFeatureEnum
 	public const OTP_CREDENTIALS = 'otp-credentials';
 	public const PAYMENT = 'payment';
 	public const PICTURE_IN_PICTURE = 'picture-in-picture';
+	public const PRIVATE_AGGREGATION = 'private-aggregation';
 	public const PUBLICKEY_CREDENTIALS_GET = 'publickey-credentials-get';
 	public const RUN_AD_AUCTION = 'run-ad-auction';
 	public const SCREEN_WAKE_LOCK = 'screen-wake-lock';
 	public const SERIAL = 'serial';
 	public const SHARED_AUTOFILL = 'shared-autofill';
-	public const STORAGE_ACCESS_API = 'storage-access-api';
+	public const SHARED_STORAGE = 'shared-storage';
+	public const SHARED_STORAGE_SELECT_URL = 'shared-storage-select-url';
+	public const SMART_CARD = 'smart-card';
+	public const STORAGE_ACCESS = 'storage-access';
 	public const SYNC_XHR = 'sync-xhr';
 	public const TRUST_TOKEN_REDEMPTION = 'trust-token-redemption';
+	public const UNLOAD = 'unload';
 	public const USB = 'usb';
 	public const VERTICAL_SCROLL = 'vertical-scroll';
 	public const WEB_SHARE = 'web-share';
+	public const WINDOW_MANAGEMENT = 'window-management';
 	public const WINDOW_PLACEMENT = 'window-placement';
 	public const XR_SPATIAL_TRACKING = 'xr-spatial-tracking';
 }

@@ -33,6 +33,8 @@ use ChromeDevtoolsProtocol\Model\Page\FrameScheduledNavigationEvent;
 use ChromeDevtoolsProtocol\Model\Page\FrameStartedLoadingEvent;
 use ChromeDevtoolsProtocol\Model\Page\FrameStoppedLoadingEvent;
 use ChromeDevtoolsProtocol\Model\Page\GenerateTestReportRequest;
+use ChromeDevtoolsProtocol\Model\Page\GetAdScriptIdRequest;
+use ChromeDevtoolsProtocol\Model\Page\GetAdScriptIdResponse;
 use ChromeDevtoolsProtocol\Model\Page\GetAppIdResponse;
 use ChromeDevtoolsProtocol\Model\Page\GetAppManifestResponse;
 use ChromeDevtoolsProtocol\Model\Page\GetCookiesResponse;
@@ -59,7 +61,6 @@ use ChromeDevtoolsProtocol\Model\Page\NavigateRequest;
 use ChromeDevtoolsProtocol\Model\Page\NavigateResponse;
 use ChromeDevtoolsProtocol\Model\Page\NavigateToHistoryEntryRequest;
 use ChromeDevtoolsProtocol\Model\Page\NavigatedWithinDocumentEvent;
-use ChromeDevtoolsProtocol\Model\Page\PrerenderAttemptCompletedEvent;
 use ChromeDevtoolsProtocol\Model\Page\PrintToPDFRequest;
 use ChromeDevtoolsProtocol\Model\Page\PrintToPDFResponse;
 use ChromeDevtoolsProtocol\Model\Page\ProduceCompilationCacheRequest;
@@ -82,6 +83,7 @@ use ChromeDevtoolsProtocol\Model\Page\SetFontSizesRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetGeolocationOverrideRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetInterceptFileChooserDialogRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetLifecycleEventsEnabledRequest;
+use ChromeDevtoolsProtocol\Model\Page\SetRPHRegistrationModeRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetSPCTransactionModeRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetTouchEmulationEnabledRequest;
 use ChromeDevtoolsProtocol\Model\Page\SetWebLifecycleStateRequest;
@@ -220,6 +222,13 @@ class PageDomain implements PageDomainInterface
 	public function generateTestReport(ContextInterface $ctx, GenerateTestReportRequest $request): void
 	{
 		$this->internalClient->executeCommand($ctx, 'Page.generateTestReport', $request);
+	}
+
+
+	public function getAdScriptId(ContextInterface $ctx, GetAdScriptIdRequest $request): GetAdScriptIdResponse
+	{
+		$response = $this->internalClient->executeCommand($ctx, 'Page.getAdScriptId', $request);
+		return GetAdScriptIdResponse::fromJson($response);
 	}
 
 
@@ -457,6 +466,12 @@ class PageDomain implements PageDomainInterface
 	public function setLifecycleEventsEnabled(ContextInterface $ctx, SetLifecycleEventsEnabledRequest $request): void
 	{
 		$this->internalClient->executeCommand($ctx, 'Page.setLifecycleEventsEnabled', $request);
+	}
+
+
+	public function setRPHRegistrationMode(ContextInterface $ctx, SetRPHRegistrationModeRequest $request): void
+	{
+		$this->internalClient->executeCommand($ctx, 'Page.setRPHRegistrationMode', $request);
 	}
 
 
@@ -824,20 +839,6 @@ class PageDomain implements PageDomainInterface
 	public function awaitNavigatedWithinDocument(ContextInterface $ctx): NavigatedWithinDocumentEvent
 	{
 		return NavigatedWithinDocumentEvent::fromJson($this->internalClient->awaitEvent($ctx, 'Page.navigatedWithinDocument'));
-	}
-
-
-	public function addPrerenderAttemptCompletedListener(callable $listener): SubscriptionInterface
-	{
-		return $this->internalClient->addListener('Page.prerenderAttemptCompleted', function ($event) use ($listener) {
-			return $listener(PrerenderAttemptCompletedEvent::fromJson($event));
-		});
-	}
-
-
-	public function awaitPrerenderAttemptCompleted(ContextInterface $ctx): PrerenderAttemptCompletedEvent
-	{
-		return PrerenderAttemptCompletedEvent::fromJson($this->internalClient->awaitEvent($ctx, 'Page.prerenderAttemptCompleted'));
 	}
 
 

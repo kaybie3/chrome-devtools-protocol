@@ -26,6 +26,13 @@ final class CSSRule implements \JsonSerializable
 	public $selectorList;
 
 	/**
+	 * Array of selectors from ancestor style rules, sorted by distance from the current rule.
+	 *
+	 * @var string[]|null
+	 */
+	public $nestingSelectors;
+
+	/**
 	 * Parent stylesheet's origin.
 	 *
 	 * @var string
@@ -67,6 +74,13 @@ final class CSSRule implements \JsonSerializable
 	 */
 	public $layers;
 
+	/**
+	 * @scope CSS at-rule array. The array enumerates @scope at-rules starting with the innermost one, going outwards.
+	 *
+	 * @var CSSScope[]|null
+	 */
+	public $scopes;
+
 
 	/**
 	 * @param object $data
@@ -80,6 +94,12 @@ final class CSSRule implements \JsonSerializable
 		}
 		if (isset($data->selectorList)) {
 			$instance->selectorList = SelectorList::fromJson($data->selectorList);
+		}
+		if (isset($data->nestingSelectors)) {
+			$instance->nestingSelectors = [];
+			foreach ($data->nestingSelectors as $item) {
+				$instance->nestingSelectors[] = (string)$item;
+			}
 		}
 		if (isset($data->origin)) {
 			$instance->origin = (string)$data->origin;
@@ -111,6 +131,12 @@ final class CSSRule implements \JsonSerializable
 				$instance->layers[] = CSSLayer::fromJson($item);
 			}
 		}
+		if (isset($data->scopes)) {
+			$instance->scopes = [];
+			foreach ($data->scopes as $item) {
+				$instance->scopes[] = CSSScope::fromJson($item);
+			}
+		}
 		return $instance;
 	}
 
@@ -123,6 +149,12 @@ final class CSSRule implements \JsonSerializable
 		}
 		if ($this->selectorList !== null) {
 			$data->selectorList = $this->selectorList->jsonSerialize();
+		}
+		if ($this->nestingSelectors !== null) {
+			$data->nestingSelectors = [];
+			foreach ($this->nestingSelectors as $item) {
+				$data->nestingSelectors[] = $item;
+			}
 		}
 		if ($this->origin !== null) {
 			$data->origin = $this->origin;
@@ -152,6 +184,12 @@ final class CSSRule implements \JsonSerializable
 			$data->layers = [];
 			foreach ($this->layers as $item) {
 				$data->layers[] = $item->jsonSerialize();
+			}
+		}
+		if ($this->scopes !== null) {
+			$data->scopes = [];
+			foreach ($this->scopes as $item) {
+				$data->scopes[] = $item->jsonSerialize();
 			}
 		}
 		return $data;

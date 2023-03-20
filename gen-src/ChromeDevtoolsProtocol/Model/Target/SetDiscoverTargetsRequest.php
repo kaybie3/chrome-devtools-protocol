@@ -18,6 +18,13 @@ final class SetDiscoverTargetsRequest implements \JsonSerializable
 	 */
 	public $discover;
 
+	/**
+	 * Only targets matching filter will be attached. If `discover` is false, `filter` must be omitted or empty.
+	 *
+	 * @var FilterEntry[]
+	 */
+	public $filter;
+
 
 	/**
 	 * @param object $data
@@ -29,6 +36,12 @@ final class SetDiscoverTargetsRequest implements \JsonSerializable
 		if (isset($data->discover)) {
 			$instance->discover = (bool)$data->discover;
 		}
+		if (isset($data->filter)) {
+			$instance->filter = [];
+			foreach ($data->filter as $item) {
+				$instance->filter[] = FilterEntry::fromJson($item);
+			}
+		}
 		return $instance;
 	}
 
@@ -38,6 +51,12 @@ final class SetDiscoverTargetsRequest implements \JsonSerializable
 		$data = new \stdClass();
 		if ($this->discover !== null) {
 			$data->discover = $this->discover;
+		}
+		if ($this->filter !== null) {
+			$data->filter = [];
+			foreach ($this->filter as $item) {
+				$data->filter[] = $item->jsonSerialize();
+			}
 		}
 		return $data;
 	}

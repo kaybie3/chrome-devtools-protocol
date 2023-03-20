@@ -7,6 +7,8 @@ use ChromeDevtoolsProtocol\Model\WebAuthn\AddCredentialRequest;
 use ChromeDevtoolsProtocol\Model\WebAuthn\AddVirtualAuthenticatorRequest;
 use ChromeDevtoolsProtocol\Model\WebAuthn\AddVirtualAuthenticatorResponse;
 use ChromeDevtoolsProtocol\Model\WebAuthn\ClearCredentialsRequest;
+use ChromeDevtoolsProtocol\Model\WebAuthn\CredentialAddedEvent;
+use ChromeDevtoolsProtocol\Model\WebAuthn\CredentialAssertedEvent;
 use ChromeDevtoolsProtocol\Model\WebAuthn\EnableRequest;
 use ChromeDevtoolsProtocol\Model\WebAuthn\GetCredentialRequest;
 use ChromeDevtoolsProtocol\Model\WebAuthn\GetCredentialResponse;
@@ -15,7 +17,9 @@ use ChromeDevtoolsProtocol\Model\WebAuthn\GetCredentialsResponse;
 use ChromeDevtoolsProtocol\Model\WebAuthn\RemoveCredentialRequest;
 use ChromeDevtoolsProtocol\Model\WebAuthn\RemoveVirtualAuthenticatorRequest;
 use ChromeDevtoolsProtocol\Model\WebAuthn\SetAutomaticPresenceSimulationRequest;
+use ChromeDevtoolsProtocol\Model\WebAuthn\SetResponseOverrideBitsRequest;
 use ChromeDevtoolsProtocol\Model\WebAuthn\SetUserVerifiedRequest;
+use ChromeDevtoolsProtocol\SubscriptionInterface;
 
 /**
  * This domain allows configuring virtual authenticators to test the WebAuthn API.
@@ -144,6 +148,17 @@ interface WebAuthnDomainInterface
 
 
 	/**
+	 * Resets parameters isBogusSignature, isBadUV, isBadUP to false if they are not present.
+	 *
+	 * @param ContextInterface $ctx
+	 * @param SetResponseOverrideBitsRequest $request
+	 *
+	 * @return void
+	 */
+	public function setResponseOverrideBits(ContextInterface $ctx, SetResponseOverrideBitsRequest $request): void;
+
+
+	/**
 	 * Sets whether User Verification succeeds or fails for an authenticator. The default is true.
 	 *
 	 * @param ContextInterface $ctx
@@ -152,4 +167,52 @@ interface WebAuthnDomainInterface
 	 * @return void
 	 */
 	public function setUserVerified(ContextInterface $ctx, SetUserVerifiedRequest $request): void;
+
+
+	/**
+	 * Triggered when a credential is added to an authenticator.
+	 *
+	 * Listener will be called whenever event WebAuthn.credentialAdded is fired.
+	 *
+	 * @param callable $listener
+	 *
+	 * @return SubscriptionInterface
+	 */
+	public function addCredentialAddedListener(callable $listener): SubscriptionInterface;
+
+
+	/**
+	 * Triggered when a credential is added to an authenticator.
+	 *
+	 * Method will block until first WebAuthn.credentialAdded event is fired.
+	 *
+	 * @param ContextInterface $ctx
+	 *
+	 * @return CredentialAddedEvent
+	 */
+	public function awaitCredentialAdded(ContextInterface $ctx): CredentialAddedEvent;
+
+
+	/**
+	 * Triggered when a credential is used in a webauthn assertion.
+	 *
+	 * Listener will be called whenever event WebAuthn.credentialAsserted is fired.
+	 *
+	 * @param callable $listener
+	 *
+	 * @return SubscriptionInterface
+	 */
+	public function addCredentialAssertedListener(callable $listener): SubscriptionInterface;
+
+
+	/**
+	 * Triggered when a credential is used in a webauthn assertion.
+	 *
+	 * Method will block until first WebAuthn.credentialAsserted event is fired.
+	 *
+	 * @param ContextInterface $ctx
+	 *
+	 * @return CredentialAssertedEvent
+	 */
+	public function awaitCredentialAsserted(ContextInterface $ctx): CredentialAssertedEvent;
 }

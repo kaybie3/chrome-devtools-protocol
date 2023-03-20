@@ -1,28 +1,28 @@
 <?php
 
-namespace ChromeDevtoolsProtocol\Model\Page;
+namespace ChromeDevtoolsProtocol\Model\Preload;
 
 /**
- * Fired when a prerender attempt is completed.
+ * Fired when a prefetch attempt is updated.
  *
  * @generated This file has been auto-generated, do not edit.
  *
  * @author Jakub Kulhan <jakub.kulhan@gmail.com>
  */
-final class PrerenderAttemptCompletedEvent implements \JsonSerializable
+final class PrefetchStatusUpdatedEvent implements \JsonSerializable
 {
 	/**
-	 * The frame id of the frame initiating prerendering.
+	 * The frame id of the frame initiating prefetch.
 	 *
 	 * @var string
 	 */
 	public $initiatingFrameId;
 
 	/** @var string */
-	public $prerenderingUrl;
+	public $prefetchUrl;
 
 	/** @var string */
-	public $finalStatus;
+	public $status;
 
 
 	/**
@@ -35,11 +35,11 @@ final class PrerenderAttemptCompletedEvent implements \JsonSerializable
 		if (isset($data->initiatingFrameId)) {
 			$instance->initiatingFrameId = (string)$data->initiatingFrameId;
 		}
-		if (isset($data->prerenderingUrl)) {
-			$instance->prerenderingUrl = (string)$data->prerenderingUrl;
+		if (isset($data->prefetchUrl)) {
+			$instance->prefetchUrl = (string)$data->prefetchUrl;
 		}
-		if (isset($data->finalStatus)) {
-			$instance->finalStatus = (string)$data->finalStatus;
+		if (isset($data->status)) {
+			$instance->status = (string)$data->status;
 		}
 		return $instance;
 	}
@@ -51,11 +51,11 @@ final class PrerenderAttemptCompletedEvent implements \JsonSerializable
 		if ($this->initiatingFrameId !== null) {
 			$data->initiatingFrameId = $this->initiatingFrameId;
 		}
-		if ($this->prerenderingUrl !== null) {
-			$data->prerenderingUrl = $this->prerenderingUrl;
+		if ($this->prefetchUrl !== null) {
+			$data->prefetchUrl = $this->prefetchUrl;
 		}
-		if ($this->finalStatus !== null) {
-			$data->finalStatus = $this->finalStatus;
+		if ($this->status !== null) {
+			$data->status = $this->status;
 		}
 		return $data;
 	}
